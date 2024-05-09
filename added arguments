@@ -3,6 +3,11 @@ def get_todo(filepath):
         todos_local = file_file.readlines() 
     return todos_local
 
+def write_todos(filepath, todos_arg):
+    with open(filepath, 'w') as file_file:
+        file_file.writelines(todos_arg) 
+  
+
 
 while True:
     user_action = input("Type add, show, edit or exit, done: ")
@@ -13,14 +18,13 @@ while True:
     if user_action.startswith('add'):
             todo = user_action[4:]
 
-           todos = get_todo(todos.txt)
+           todos = get_todo('todos.txt')
 
             todos.append(todo + '\n')
-            with open('todos.txt', 'w') as file:
-                todos = file.writelines(todos)
+            write_todos('todos.txt', todos)
 
     elif 'show' in user_action:
-             todos = get_todo(todos.txt)
+             todos = get_todo('todos.txt')
                 for index, item in enumerate(todos):
                     item = item.strip('\n')
                     row = f"{index + 1}. {item.capitalize()}."
@@ -31,14 +35,13 @@ while True:
                 print(number)
                 number = number - 1
 
-                todos = get_todo(todos.txt)
+                todos = get_todo'todos.txt')
 
 
                 new_to_do = input("Enter new todo: ")
                 todos[number] = new_to_do + "\n"
 
-                with open('todos.txt', 'w') as file:
-                    todos = file.writelines(todos)
+                write_todos('todos.txt', todos)
             except ValueError:
                 print('Your command in not valid!')
                 continue
@@ -48,15 +51,14 @@ while True:
                 number = int(user_action[5:])
                 
 
-                todos = get_todo(todos.txt)
+                todos = get_todo('todos.txt')
                 index = number - 1
             
                 todo_to_remove = todos[index].strip('\n')
                 todos.pop(index)
 
                 todos.pop(number)
-                with open('todos.txt', 'w') as file:
-                    todos = file.writelines(todos)
+                write_todos('todos.txt', todos)
 
                 message = F'Todo {todo_to_remove} was removed from the list!'
                 print(message)
