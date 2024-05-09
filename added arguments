@@ -48,7 +48,7 @@ while True:
                 number = int(user_action[5:])
                 
 
-                todos = get_todo()
+                todos = get_todo(todos.txt)
                 index = number - 1
             
                 todo_to_remove = todos[index].strip('\n')
